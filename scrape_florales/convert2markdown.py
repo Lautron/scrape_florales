@@ -1,7 +1,7 @@
 from markdownify import markdownify 
 
 def convert(html, front_matter):
-    md = markdownify(html)
+    md = markdownify(html, strip=['script', 'header'])
     res = front_matter + md
     return res
 
