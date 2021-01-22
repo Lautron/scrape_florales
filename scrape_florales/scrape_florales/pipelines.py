@@ -38,11 +38,13 @@ date: 2021-01-18T16:08:22-03:00
 draft: false
 --- 
         ''' 
+        if '/' in item['title']:
+            item['title'] = item['title'].replace('/', '-')
         clean_html = self.del_tags(item['content'])
         res = convert(clean_html, front)
         with open(f"mdfiles/{item['title']}.md", 'w') as mdfile:
             mdfile.write(self.prettify(res))
-        with open(f"mdfiles/{item['title']}.html", 'w') as htmlfile:
-            htmlfile.write(clean_html)
+        #with open(f"mdfiles/{item['title']}.html", 'w') as htmlfile:
+        #    htmlfile.write(clean_html)
         item['content'] = res
         return item
